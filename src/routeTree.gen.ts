@@ -10,7 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TerimaRouteImport } from './routes/terima'
+import { Route as StokRouteImport } from './routes/stok'
+import { Route as RiwayatRouteImport } from './routes/riwayat'
 import { Route as PesanRouteImport } from './routes/pesan'
+import { Route as PengaturanRouteImport } from './routes/pengaturan'
+import { Route as JualRouteImport } from './routes/jual'
+import { Route as InsightRouteImport } from './routes/insight'
+import { Route as EvaluasiRouteImport } from './routes/evaluasi'
+import { Route as ClosingRouteImport } from './routes/closing'
+import { Route as CicilanRouteImport } from './routes/cicilan'
+import { Route as BagiRouteImport } from './routes/bagi'
+import { Route as BackorderRouteImport } from './routes/backorder'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TerimaRoute = TerimaRouteImport.update({
@@ -18,9 +28,59 @@ const TerimaRoute = TerimaRouteImport.update({
   path: '/terima',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StokRoute = StokRouteImport.update({
+  id: '/stok',
+  path: '/stok',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RiwayatRoute = RiwayatRouteImport.update({
+  id: '/riwayat',
+  path: '/riwayat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PesanRoute = PesanRouteImport.update({
   id: '/pesan',
   path: '/pesan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PengaturanRoute = PengaturanRouteImport.update({
+  id: '/pengaturan',
+  path: '/pengaturan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JualRoute = JualRouteImport.update({
+  id: '/jual',
+  path: '/jual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightRoute = InsightRouteImport.update({
+  id: '/insight',
+  path: '/insight',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvaluasiRoute = EvaluasiRouteImport.update({
+  id: '/evaluasi',
+  path: '/evaluasi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClosingRoute = ClosingRouteImport.update({
+  id: '/closing',
+  path: '/closing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CicilanRoute = CicilanRouteImport.update({
+  id: '/cicilan',
+  path: '/cicilan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BagiRoute = BagiRouteImport.update({
+  id: '/bagi',
+  path: '/bagi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BackorderRoute = BackorderRouteImport.update({
+  id: '/backorder',
+  path: '/backorder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,31 +91,111 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/backorder': typeof BackorderRoute
+  '/bagi': typeof BagiRoute
+  '/cicilan': typeof CicilanRoute
+  '/closing': typeof ClosingRoute
+  '/evaluasi': typeof EvaluasiRoute
+  '/insight': typeof InsightRoute
+  '/jual': typeof JualRoute
+  '/pengaturan': typeof PengaturanRoute
   '/pesan': typeof PesanRoute
+  '/riwayat': typeof RiwayatRoute
+  '/stok': typeof StokRoute
   '/terima': typeof TerimaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/backorder': typeof BackorderRoute
+  '/bagi': typeof BagiRoute
+  '/cicilan': typeof CicilanRoute
+  '/closing': typeof ClosingRoute
+  '/evaluasi': typeof EvaluasiRoute
+  '/insight': typeof InsightRoute
+  '/jual': typeof JualRoute
+  '/pengaturan': typeof PengaturanRoute
   '/pesan': typeof PesanRoute
+  '/riwayat': typeof RiwayatRoute
+  '/stok': typeof StokRoute
   '/terima': typeof TerimaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/backorder': typeof BackorderRoute
+  '/bagi': typeof BagiRoute
+  '/cicilan': typeof CicilanRoute
+  '/closing': typeof ClosingRoute
+  '/evaluasi': typeof EvaluasiRoute
+  '/insight': typeof InsightRoute
+  '/jual': typeof JualRoute
+  '/pengaturan': typeof PengaturanRoute
   '/pesan': typeof PesanRoute
+  '/riwayat': typeof RiwayatRoute
+  '/stok': typeof StokRoute
   '/terima': typeof TerimaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pesan' | '/terima'
+  fullPaths:
+    | '/'
+    | '/backorder'
+    | '/bagi'
+    | '/cicilan'
+    | '/closing'
+    | '/evaluasi'
+    | '/insight'
+    | '/jual'
+    | '/pengaturan'
+    | '/pesan'
+    | '/riwayat'
+    | '/stok'
+    | '/terima'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pesan' | '/terima'
-  id: '__root__' | '/' | '/pesan' | '/terima'
+  to:
+    | '/'
+    | '/backorder'
+    | '/bagi'
+    | '/cicilan'
+    | '/closing'
+    | '/evaluasi'
+    | '/insight'
+    | '/jual'
+    | '/pengaturan'
+    | '/pesan'
+    | '/riwayat'
+    | '/stok'
+    | '/terima'
+  id:
+    | '__root__'
+    | '/'
+    | '/backorder'
+    | '/bagi'
+    | '/cicilan'
+    | '/closing'
+    | '/evaluasi'
+    | '/insight'
+    | '/jual'
+    | '/pengaturan'
+    | '/pesan'
+    | '/riwayat'
+    | '/stok'
+    | '/terima'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BackorderRoute: typeof BackorderRoute
+  BagiRoute: typeof BagiRoute
+  CicilanRoute: typeof CicilanRoute
+  ClosingRoute: typeof ClosingRoute
+  EvaluasiRoute: typeof EvaluasiRoute
+  InsightRoute: typeof InsightRoute
+  JualRoute: typeof JualRoute
+  PengaturanRoute: typeof PengaturanRoute
   PesanRoute: typeof PesanRoute
+  RiwayatRoute: typeof RiwayatRoute
+  StokRoute: typeof StokRoute
   TerimaRoute: typeof TerimaRoute
 }
 
@@ -68,11 +208,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TerimaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stok': {
+      id: '/stok'
+      path: '/stok'
+      fullPath: '/stok'
+      preLoaderRoute: typeof StokRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/riwayat': {
+      id: '/riwayat'
+      path: '/riwayat'
+      fullPath: '/riwayat'
+      preLoaderRoute: typeof RiwayatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pesan': {
       id: '/pesan'
       path: '/pesan'
       fullPath: '/pesan'
       preLoaderRoute: typeof PesanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pengaturan': {
+      id: '/pengaturan'
+      path: '/pengaturan'
+      fullPath: '/pengaturan'
+      preLoaderRoute: typeof PengaturanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jual': {
+      id: '/jual'
+      path: '/jual'
+      fullPath: '/jual'
+      preLoaderRoute: typeof JualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insight': {
+      id: '/insight'
+      path: '/insight'
+      fullPath: '/insight'
+      preLoaderRoute: typeof InsightRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evaluasi': {
+      id: '/evaluasi'
+      path: '/evaluasi'
+      fullPath: '/evaluasi'
+      preLoaderRoute: typeof EvaluasiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/closing': {
+      id: '/closing'
+      path: '/closing'
+      fullPath: '/closing'
+      preLoaderRoute: typeof ClosingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cicilan': {
+      id: '/cicilan'
+      path: '/cicilan'
+      fullPath: '/cicilan'
+      preLoaderRoute: typeof CicilanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bagi': {
+      id: '/bagi'
+      path: '/bagi'
+      fullPath: '/bagi'
+      preLoaderRoute: typeof BagiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/backorder': {
+      id: '/backorder'
+      path: '/backorder'
+      fullPath: '/backorder'
+      preLoaderRoute: typeof BackorderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +297,17 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BackorderRoute: BackorderRoute,
+  BagiRoute: BagiRoute,
+  CicilanRoute: CicilanRoute,
+  ClosingRoute: ClosingRoute,
+  EvaluasiRoute: EvaluasiRoute,
+  InsightRoute: InsightRoute,
+  JualRoute: JualRoute,
+  PengaturanRoute: PengaturanRoute,
   PesanRoute: PesanRoute,
+  RiwayatRoute: RiwayatRoute,
+  StokRoute: StokRoute,
   TerimaRoute: TerimaRoute,
 }
 export const routeTree = rootRouteImport

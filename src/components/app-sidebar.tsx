@@ -14,9 +14,12 @@ import {
   History,
   Settings as SettingsIcon,
   Store,
+  ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useOrders, useBackorders, useSales } from "@/hooks/use-tables";
+import { useOrders, useBackorders, useSales, useInventory } from "@/hooks/use-tables";
+import { useState } from "react";
+import { rp } from "@/lib/utils";
 
 type Item = {
   to: string;
@@ -43,6 +46,8 @@ function useBadges() {
 export function AppSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
   const b = useBadges();
+  const { data: inv } = useInventory();
+  const [expandStok, setExpandStok] = useState(false);
 
   const sections: { title: string; items: Item[] }[] = [
     {
@@ -163,6 +168,60 @@ export function AppSidebar({ onNavigate }: { onNavigate?: () => void }) {
             })}
           </div>
         ))}
+
+        {/* Daftar Stok & Harga Section */}
+        <div className="mb-1">
+          <button
+            onClick={() => setExpandStok(!expandStok)}
+            className={cn(
+              "relative flex w-full items-center gap-3 border-l-[3px] border-transparent px-5 py-2.5 text-[13px] font-medium transition-colors",
+              "hover:bg-white/5",
+              expandStok && "border-l-accent bg-white/10 text-accent-light",
+            )}
+          >
+            <Boxes className="h-[18px] w-[18px] flex-none opacity-70" />
+            <span className="flex-1 truncate text-left">Daftar Stok & Harga</span>
+            <ChevronDown
+              className={cn(
+                "h-4 w-4 transition-transform",
+                expandStok && "rotate-180",
+              )}
+            />
+          </button>
+
+          {expandStok && (
+            <div className="max-h-[400px] overflow-y-auto bg-white/5 py-2">
+              {inv.length === 0 ? (
+                <div className="px-5 py-3 text-[12px] opacity-50">
+                  Tidak ada produk
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  {inv.map((item) => (
+                    <div
+                      key={item.id}
+                      className="border-l border-white/10 px-5 py-2 text-[12px]"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex-1">
+                          <p className="font-medium text-accent-light truncate">
+                            {item.nama}
+                          </p>
+                          <div className="mt-0.5 space-y-0.5 text-[11px] opacity-70">
+                            <p>Stok: {item.stok} unit</p>
+                            <p className="text-accent">
+                              Jual: {rp(item.harga_jual)}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </nav>
 
       <div className="border-t border-white/10 px-5 py-3 text-[10px] opacity-40">

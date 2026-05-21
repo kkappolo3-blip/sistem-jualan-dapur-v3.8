@@ -222,6 +222,17 @@ function JualModal({
     setDp(0);
   }
 
+  const handleProductChange = (idx: number, invId: string) => {
+    const found = inv.find((x) => x.id === invId);
+    const newItems = [...items];
+    newItems[idx] = {
+      ...newItems[idx],
+      invId: invId,
+      harga: found?.harga_jual ?? 0,
+    };
+    setItems(newItems);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[92vh] max-w-2xl overflow-y-auto">
@@ -277,16 +288,7 @@ function JualModal({
                   >
                     <Select
                       value={it.invId}
-                      onValueChange={(v) => {
-                        const found = inv.find((x) => x.id === v);
-                        const c = [...items];
-                        c[idx] = {
-                          ...c[idx],
-                          invId: v,
-                          harga: found?.harga_jual ?? 0,
-                        };
-                        setItems(c);
-                      }}
+                      onValueChange={(v) => handleProductChange(idx, v)}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Pilih produk" />
@@ -305,12 +307,12 @@ function JualModal({
                       value={it.qty}
                       max={ii?.stok}
                       onChange={(e) => {
-                        const c = [...items];
-                        c[idx] = {
-                          ...c[idx],
+                        const newItems = [...items];
+                        newItems[idx] = {
+                          ...newItems[idx],
                           qty: parseInt(e.target.value) || 0,
                         };
-                        setItems(c);
+                        setItems(newItems);
                       }}
                     />
                     <Input
@@ -318,12 +320,12 @@ function JualModal({
                       placeholder="Harga"
                       value={it.harga}
                       onChange={(e) => {
-                        const c = [...items];
-                        c[idx] = {
-                          ...c[idx],
+                        const newItems = [...items];
+                        newItems[idx] = {
+                          ...newItems[idx],
                           harga: parseInt(e.target.value) || 0,
                         };
-                        setItems(c);
+                        setItems(newItems);
                       }}
                     />
                     <Button
